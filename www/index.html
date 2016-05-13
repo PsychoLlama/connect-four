@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Connect-four</title>
+
+	<style>
+		body {
+			background-color: white;
+		}
+		.table {
+			margin: auto;
+			width: 50vw;
+			height: calc(50vw / 7 * 6);
+			position: relative;
+			z-index: 1;
+		}
+		.row {
+			position: relative;
+			width: 100%;
+			height: calc(100% / 6);
+		}
+		.cell {
+			position: relative;
+			height: 100%;
+			width: calc(100% / 7);
+			display: inline-block;
+			overflow: hidden;
+		}
+		.hole {
+			box-shadow: 0 0 0 50px #2593FF;
+			height: 80%;
+			width: 80%;
+			margin: 10%;
+			border-radius: 50%;
+		}
+		.red {
+			background-color: red;
+		}
+		.blue {
+			background-color: blue;
+		}
+		input.valid-false {
+			border: 1px solid red;
+		}
+		.game-link {
+			display: block;
+		}
+	</style>
+</head>
+<body>
+	<div id="app"></div>
+	<script src='gun.js'></script>
+	<script src='bundle.js'></script>
+</body>
+</html>
