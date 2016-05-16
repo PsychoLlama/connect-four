@@ -26,7 +26,7 @@
   },
   "homepage": "https://github.com/PsychoLlama/connect-four#readme",
   "dependencies": {
-    "connect-four": "0.0.4",
+    "connect-four": "0.0.5",
     "gun": "^0.3.7",
     "random-words": "0.0.1",
     "react": "^15.0.2",

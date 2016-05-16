@@ -5,6 +5,7 @@ var Gun = require('gun');
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
+var port = process.argv[2] || 80;
 
 var gun = new Gun();
 
@@ -32,4 +33,4 @@ server.on('request', function (req, res) {
 
 gun.wsp(server);
 
-server.listen(80);
+server.listen(port);

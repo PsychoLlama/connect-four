@@ -57,15 +57,23 @@ export default class Table extends React.Component {
 
 	click(e) {
 		const coord = e.target.getAttribute('data-coord');
-		if (!coord) {
+		if (coord === null) {
 			return;
 		}
-		const col = coord.slice(0, 1);
+		let col = coord.slice(0, 1);
+		col = parseInt(col, 10);
+		if (!this.game.validMove(col)) {
+			return;
+		}
 		const key = this.props.params.gameID;
 		const turns = armada[key];
+		this.play(turns, col);
+	}
+
+	play(turns, col) {
 		const player = this.state.player;
 		turns.not(function () {
-
+			turns.put({ col, player });
 		}).val(function (turn) {
 			if (turn.player === player) {
 				return;
@@ -82,7 +90,7 @@ export default class Table extends React.Component {
 		const game = this.game;
 		let turns = armada[key];
 		if (!turns) {
-			turns = armada[key] = gun.get(key).init();
+			turns = armada[key] = gun.get(key);
 			turns.recurse(function () {
 				armada[key] = this.init();
 			});

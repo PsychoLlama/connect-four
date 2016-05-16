@@ -14,4 +14,4 @@ Gun.prototype.recurse = function (cb, gun) {
 	});
 };
 
-export default new Gun('http://192.168.1.113/gun');
+export default new Gun('http://192.168.1.107/gun');

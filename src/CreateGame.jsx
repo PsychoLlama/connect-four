@@ -3,7 +3,13 @@ import gun from './gun.jsx';
 import { hashHistory } from 'react-router';
 import recommend from 'random-words';
 
-const games = gun.get('games');
+const games = window.games = gun.get('games');
+
+games.not(function () {
+	this.put({
+		'GAME_LIST_INITIATOR': null
+	});
+});
 
 export default class CreateGame extends React.Component {
 	constructor() {
