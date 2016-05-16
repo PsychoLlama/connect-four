@@ -1,6 +1,7 @@
 import React from 'react';
 import Game from 'connect-four';
 import gun from './gun.jsx';
+import ChoosePlayer from './ChoosePlayer.jsx';
 
 const armada = {};
 
@@ -10,9 +11,7 @@ export default class Table extends React.Component {
 		const game = new Game();
 		const table = this;
 		this.game = game;
-		this.state = {
-			player: prompt('Choose a color')
-		};
+		this.state = {};
 		game.on('play', function (player, coord) {
 			if (table.state.unmounted) {
 				return;
@@ -26,6 +25,9 @@ export default class Table extends React.Component {
 	}
 
 	render() {
+		if (!this.state.player) {
+			return <ChoosePlayer gameID={this.props.params.gameID} parent={this} />;
+		}
 		let cols = [];
 
 		// Populate a table like structure
