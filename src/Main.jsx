@@ -12,11 +12,11 @@ export default class Main extends React.Component {
 			<h1>C<sup>4</sup></h1>
 
 			<section>
-				<Link to='/games'>
+				<Link to='/games' className='btn btn-large'>
 					Join a game
 				</Link>
 
-				<Link to='/new-game'>
+				<Link to='/new-game' className='btn btn-large'>
 					Start a game
 				</Link>
 			</section>

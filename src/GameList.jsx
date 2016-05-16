@@ -1,23 +1,25 @@
 /*eslint "no-unused-vars": "off"*/
 import React from 'react';
 import Game from './Game.jsx';
-import Gun from 'gun/gun';
+import gun from './gun.jsx';
 
-const gun = new Gun('http://localhost/gun').get('games').init();
+const games = gun.get('games').init();
 
 export default class GameList extends React.Component {
 	constructor() {
 		super();
 		this.state = {
-			games: []
+			gameList: []
 		};
 	}
+
 	render() {
 		return <div>
 			<h1>Active Games</h1>
-			<ul>{this.state.games}</ul>
+			<ul>{this.state.gameList}</ul>
 		</div>;
 	}
+
 	componentDidMount() {
 		const list = this;
 		this.setState(() => {
@@ -25,18 +27,19 @@ export default class GameList extends React.Component {
 				unmounted: false
 			};
 		});
-		gun.map().val(game => {
+		games.map().val(game => {
 			if (this.state.unmounted) {
 				return;
 			}
 			list.setState(state => {
-				const games = state.games;
+				const games = state.gameList;
 				return {
-					games: games.concat(<Game key={game.key} game={game} />)
+					gameList: games.concat(<Game key={game.key} game={game} />)
 				};
 			});
 		});
 	}
+
 	componentWillUnmount() {
 		this.setState(function () {
 			return {

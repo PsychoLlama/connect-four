@@ -21,15 +21,19 @@ export default class CreateGame extends React.Component {
 	render() {
 		const state = this.state;
 		const valid = Boolean(state.valid[state.key]);
-		let err = state.err[state.key];
+		const err = state.err[state.key];
 		let msg;
 		if (err) {
-			msg = <p>{err}</p>;
+			msg = <span className='error'>
+				{err}
+			</span>;
 		} else {
-			msg = <p>
-				Need inspiration? How about
-				&nbsp;<b>{this.state.recommend}</b>
-			</p>;
+			msg = <span>
+				Need inspiration? How about&nbsp;
+				<span className='recommend'>
+					{this.state.recommend}
+				</span>
+			</span>;
 		}
 
 		return <div>
@@ -43,7 +47,7 @@ export default class CreateGame extends React.Component {
 					Start Playing
 				</button>
 			</form>
-			{msg}
+			<p className='status'>{msg}</p>
 		</div>;
 	}
 
