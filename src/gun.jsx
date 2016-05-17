@@ -1,5 +1,7 @@
 import Gun from 'gun/gun';
 
+window.Gun = Gun;
+
 Gun.prototype.recurse = function (cb, gun) {
 	if (!gun) {
 		gun = this;
@@ -14,4 +16,6 @@ Gun.prototype.recurse = function (cb, gun) {
 	});
 };
 
-export default new Gun('http://192.168.1.107/gun');
+const origin = location.origin;
+
+export default new Gun(`${origin}/gun`);
