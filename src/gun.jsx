@@ -16,6 +16,9 @@ Gun.prototype.recurse = function (cb, gun) {
 	});
 };
 
-const origin = location.origin;
+const url = 'http://gungame.herokuapp.com/gun';
 
-export default new Gun(`${origin}/gun`);
+export default new Gun([
+	url,
+	`${location.origin}/gun`
+]);

@@ -3,7 +3,7 @@ import React from 'react';
 import Game from './Game.jsx';
 import gun from './gun.jsx';
 
-const games = gun.get('games').init();
+const games = gun.get('games');
 
 export default class GameList extends React.Component {
 	constructor() {
