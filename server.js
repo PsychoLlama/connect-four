@@ -5,7 +5,7 @@ var Gun = require('gun');
 var http = require('http');
 var fs = require('fs');
 var path = require('path');
-var port = process.argv[2] || 80;
+var port = process.env.PORT || process.argv[2] || 80;
 
 var gun = new Gun();
 
