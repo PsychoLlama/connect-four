@@ -12,7 +12,7 @@ var gun = new Gun();
 var server = new http.Server(gun.wsp.server);
 
 server.on('request', function (req, res) {
-	if (req.url === '/gun.js') {
+	if (req.url === '/gun.js' || req.url === '/gun') {
 		return;
 	}
 	if (req.url === '/') {
