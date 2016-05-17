@@ -1,6 +1,12 @@
-import Gun from 'gun/gun';
-
-window.Gun = Gun;
+/*global Gun*/
+/*
+	For some reason, gun isn't
+	working through babel and webpack.
+	It's being imported through a script
+	tag for now, and the bugs are being
+	tracked down.
+*/
+'use strict';
 
 Gun.prototype.recurse = function (cb, gun) {
 	if (!gun) {
@@ -16,9 +22,4 @@ Gun.prototype.recurse = function (cb, gun) {
 	});
 };
 
-const url = 'http://gungame.herokuapp.com/gun';
-
-export default new Gun([
-	url,
-	`${location.origin}/gun`
-]);
+export default new Gun(`${location.origin}/gun`);
