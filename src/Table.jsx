@@ -3,6 +3,7 @@ import React from 'react';
 import Game from 'connect-four';
 import gun from './gun.jsx';
 import ChoosePlayer from './ChoosePlayer.jsx';
+import GameStatus from './GameStatus.jsx';
 
 const armada = {};
 
@@ -17,31 +18,11 @@ export default class Table extends React.Component {
 			if (table.state.unmounted) {
 				return;
 			}
-			let status;
-			if (player === table.state.player) {
-				status = 'Waiting for other player...';
-			} else {
-				status = 'Your turn';
-			}
 			const key = game.format(coord.col, coord.row);
 			table.setState(() => {
-				const state = {
+				return {
 					[key]: player
 				};
-				if (!game.ended) {
-					state.status = status;
-				}
-				return state;
-			});
-		});
-
-		game.on('end', winner => {
-			let status = `${winner} wins!`;
-			if (!winner) {
-				status = 'Game tied :(';
-			}
-			this.setState(() => {
-				return { status };
 			});
 		});
 	}
@@ -53,12 +34,6 @@ export default class Table extends React.Component {
 			return <ChoosePlayer gameID={gameID} parent={this} />;
 		}
 		let cols = [];
-		let status = this.state.status;
-		if (!status && !this.game.ended && player === 'player1') {
-			status = 'Your turn';
-		} else if (!status && !this.game.ended) {
-			status = 'Waiting for other player...';
-		}
 
 		// Populate a table like structure
 		for (let col = 0; col < this.game.cols; col += 1) {
@@ -83,7 +58,7 @@ export default class Table extends React.Component {
 		}
 
 		return <div>
-			<h2>{status}</h2>
+			<GameStatus player={this.state.player} game={this.game} />
 			<div className='table'>
 				{cols}
 			</div>
@@ -107,7 +82,7 @@ export default class Table extends React.Component {
 
 	play(turns, col) {
 		const player = this.state.player;
-		if (!player || player === 'spectator') {
+		if (!player || player === 'playerspectator') {
 			return;
 		}
 		turns.not(function () {
