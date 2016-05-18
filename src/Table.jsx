@@ -26,7 +26,8 @@ export default class Table extends React.Component {
 
 	render() {
 		if (!this.state.player) {
-			return <ChoosePlayer gameID={this.props.params.gameID} parent={this} />;
+			let gameID = this.props.params.gameID;
+			return <ChoosePlayer gameID={gameID} parent={this} />;
 		}
 		let cols = [];
 
@@ -92,7 +93,8 @@ export default class Table extends React.Component {
 		const game = this.game;
 		let turns = armada[key];
 		if (!turns) {
-			turns = armada[key] = gun.get(key);
+			const games = gun.game(key).init();
+			turns = armada[key] = games.path('turns');
 			turns.recurse(function () {
 				armada[key] = this.init();
 			});
@@ -103,6 +105,13 @@ export default class Table extends React.Component {
 	}
 
 	componentWillUnmount() {
+		const player = this.state.player;
+		if (player) {
+			const gameID = this.props.params.gameID;
+			const game = gun.game(gameID);
+			game.path('players').path(player).put(null);
+		}
+
 		/*
 			This must be set synchronously,
 			otherwise there are race conditions

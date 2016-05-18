@@ -8,7 +8,9 @@
 */
 'use strict';
 
-Gun.prototype.recurse = function (cb, gun) {
+const API = Gun.prototype;
+
+API.recurse = function (cb, gun) {
 	if (!gun) {
 		gun = this;
 	}
@@ -20,6 +22,10 @@ Gun.prototype.recurse = function (cb, gun) {
 			this.recurse(cb, gun.get(soul).path('next'));
 		}
 	});
+};
+
+API.game = function (key) {
+	return this.get(`games: ${key}`);
 };
 
 export default new Gun(`${location.origin}/gun`);

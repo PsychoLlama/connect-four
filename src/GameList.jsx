@@ -1,4 +1,5 @@
 /*eslint "no-unused-vars": "off"*/
+/*global Gun*/
 import React from 'react';
 import Game from './Game.jsx';
 import gun from './gun.jsx';
@@ -27,9 +28,14 @@ export default class GameList extends React.Component {
 				unmounted: false
 			};
 		});
-		games.map().val(game => {
-			if (this.state.unmounted) {
+		games.map().val((game, field) => {
+			if (this.state.unmounted || game === null) {
 				return;
+			}
+			const age = Gun.is.node.state(game, 'key');
+			const now = new Date().getTime();
+			if (age < now - 1000 * 60 * 60) {
+				return games.path(field).put(null);
 			}
 			list.setState(state => {
 				const games = state.gameList;
