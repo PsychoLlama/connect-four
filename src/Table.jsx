@@ -1,3 +1,4 @@
+/*eslint "no-unused-vars": "off"*/
 import React from 'react';
 import Game from 'connect-four';
 import gun from './gun.jsx';
@@ -12,24 +13,52 @@ export default class Table extends React.Component {
 		const table = this;
 		this.game = game;
 		this.state = {};
-		game.on('play', function (player, coord) {
+		game.on('play', (player, coord) => {
 			if (table.state.unmounted) {
 				return;
 			}
+			let status;
+			if (player === table.state.player) {
+				status = 'Waiting for other player...';
+			} else {
+				status = 'Your turn';
+			}
 			const key = game.format(coord.col, coord.row);
-			table.setState(function (state) {
-				state[key] = player;
+			table.setState(() => {
+				const state = {
+					[key]: player
+				};
+				if (!game.ended) {
+					state.status = status;
+				}
 				return state;
+			});
+		});
+
+		game.on('end', winner => {
+			let status = `${winner} wins!`;
+			if (!winner) {
+				status = 'Game tied :(';
+			}
+			this.setState(() => {
+				return { status };
 			});
 		});
 	}
 
 	render() {
-		if (!this.state.player) {
+		const player = this.state.player;
+		if (!player) {
 			let gameID = this.props.params.gameID;
 			return <ChoosePlayer gameID={gameID} parent={this} />;
 		}
 		let cols = [];
+		let status = this.state.status;
+		if (!status && !this.game.ended && player === 'player1') {
+			status = 'Your turn';
+		} else if (!status && !this.game.ended) {
+			status = 'Waiting for other player...';
+		}
 
 		// Populate a table like structure
 		for (let col = 0; col < this.game.cols; col += 1) {
@@ -53,8 +82,11 @@ export default class Table extends React.Component {
 			cols.push(column);
 		}
 
-		return <div className='table'>
-			{cols}
+		return <div>
+			<h2>{status}</h2>
+			<div className='table'>
+				{cols}
+			</div>
 		</div>;
 	}
 
@@ -75,10 +107,18 @@ export default class Table extends React.Component {
 
 	play(turns, col) {
 		const player = this.state.player;
+		if (!player || player === 'spectator') {
+			return;
+		}
 		turns.not(function () {
+			if (player !== 'player1') {
+				// player1 starts first
+				return;
+			}
 			turns.put({ col, player });
 		}).val(function (turn) {
 			if (turn.player === player) {
+				// wait your turn
 				return;
 			}
 			const next = this.path('next');

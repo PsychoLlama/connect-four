@@ -27,6 +27,14 @@ export default class ChoosePlayer extends React.Component {
 					name='player'
 					onChange={input} />
 			</label>
+			<label>
+				Spectator
+				<input
+					type='radio'
+					value='spectator'
+					name='player'
+					onChange={input} />
+			</label>
 		</form>;
 	}
 	componentDidMount() {
