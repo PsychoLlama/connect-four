@@ -5,7 +5,7 @@ function getOtherPlayer (player) {
 
 function getWinner(me, winner) {
 	const otherPlayer = getOtherPlayer(winner);
-	const spectator = me === 'playerspectator';
+	const spectator = me === 'spectator';
 	let message = '';
 	if (winner === me) {
 		message = 'You win!';
@@ -35,7 +35,7 @@ export default class GameStatus extends React.Component {
 			message = getWinner(me, game.winner);
 		} else if (me === 'player1') {
 			message = 'Your turn';
-		} else if (me === 'playerspectator') {
+		} else if (me === 'spectator') {
 			message = '';
 		} else {
 			let otherPlayer = getOtherPlayer(me);
@@ -48,7 +48,7 @@ export default class GameStatus extends React.Component {
 		game.on('play', player => {
 			const otherPlayer = getOtherPlayer(player);
 			let message;
-			if (me === 'playerspectator') {
+			if (me === 'spectator') {
 				message = `${otherPlayer}'s turn`;
 			} else if (me === otherPlayer) {
 				message = 'Your turn';

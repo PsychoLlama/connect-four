@@ -14,7 +14,7 @@ export default class ChoosePlayer extends React.Component {
 				<input
 					disabled={this.state.player1 !== null}
 					type='radio'
-					value='1'
+					value='player1'
 					name='player'
 					onChange={input} />
 			</label>
@@ -23,7 +23,7 @@ export default class ChoosePlayer extends React.Component {
 				<input
 					disabled={this.state.player2 !== null}
 					type='radio'
-					value='2'
+					value='player2'
 					name='player'
 					onChange={input} />
 			</label>
@@ -60,8 +60,7 @@ export default class ChoosePlayer extends React.Component {
 	}
 	input(e) {
 		// should be `player1` or `player2`.
-		const num = e.target.value;
-		const player = `player${num}`;
+		const player = e.target.value;
 		const game = gun.game(this.props.gameID);
 		game.path('players').put({
 			[player]: true
