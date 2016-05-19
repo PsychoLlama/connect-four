@@ -25,7 +25,28 @@ API.recurse = function (cb, gun) {
 };
 
 API.game = function (key) {
-	return this.get(`games: ${key}`);
+	const game = this.get(`games: ${key}`);
+	const players = game.path('players');
+	players.not(() => {
+		players.put({
+			player1: null,
+			player2: null
+		});
+	});
+	return game;
+};
+
+API.replace = function (value) {
+	return this.put(null).put(value);
+};
+
+API.reset = function () {
+	this.path('players').replace({
+		player1: null,
+		player2: null
+	});
+	this.path('turns').replace({});
+	return this;
 };
 
 export default new Gun(`${location.origin}/gun`);

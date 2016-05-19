@@ -1,0 +1,39 @@
+body {
+	margin: 0;
+	background-color: #93DCFF;
+	background-image: linear-gradient(125deg, #93DCFF, #c1e0f2, #93DCFF);
+	background-repeat: no-repeat;
+	min-height: 100vh;
+	font-family: raleway, helvetica, arial, sans-serif;
+	color: #303438;
+}
+
+.btn {
+	border: 1px solid white;
+	border: 1px solid rgba(255, 255, 255, 0.6);
+	display: inline-block;
+	padding: 0.5em 1.5em;
+}
+
+a {
+	color: inherit;
+	text-decoration: none;
+}
+a:hover {
+	border-bottom: 1px solid inherit;
+}
+.player1 {
+	background-color: red;
+}
+.player2 {
+	background-color: blue;
+}
+input.valid-false {
+	border: 1px solid red;
+}
+.game-link {
+	display: block;
+}
+.status .recommend {
+	font-weight: bold;
+}

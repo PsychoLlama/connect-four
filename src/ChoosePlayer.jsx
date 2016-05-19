@@ -48,10 +48,7 @@ export default class ChoosePlayer extends React.Component {
 			});
 		}).on(players => {
 			if (!this.unmounted) {
-				this.setState({
-					player1: players.player1,
-					player2: players.player2
-				});
+				this.setState(players);
 			}
 		});
 	}

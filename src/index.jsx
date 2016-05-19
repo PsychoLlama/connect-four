@@ -1,6 +1,8 @@
 /*eslint "no-unused-vars": "off"*/
 // eslint doesn't understand JSX very well.
 
+require('./styles/index.scss');
+
 import {
 	Router,
 	Route,

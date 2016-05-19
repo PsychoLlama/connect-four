@@ -4,6 +4,7 @@ import Game from 'connect-four';
 import gun from './gun.jsx';
 import ChoosePlayer from './ChoosePlayer.jsx';
 import GameStatus from './GameStatus.jsx';
+require('./styles/Table.scss');
 
 const armada = {};
 
