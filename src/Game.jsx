@@ -9,8 +9,10 @@ export default class Game extends React.Component {
 	}
 	render() {
 		const key = this.props.game.key;
-		return <Link to={`/games/${key}`} className='game-link'>
-			{key}
-		</Link>;
+		return <li className='game'>
+			<Link to={`/games/${key}`} className='link'>
+				{key}
+			</Link>
+		</li>;
 	}
 }

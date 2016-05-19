@@ -1,0 +1,35 @@
+/*
+	Responsively resizes
+	a card-like container
+	to fit well on phones
+	and look great on large
+	devices.
+*/
+
+.responsive-size {
+	$phone: 768px;
+	$text-color: #303438;
+
+	position: relative;
+
+	color: $text-color;
+	width: 50vw;
+	margin: 5vh auto;
+	text-align: center;
+	background-color: white;
+	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.08);
+
+	@media (max-width: $phone) {
+		width: 90vw;
+		min-height: 95vh;
+		margin: 2.5vh 5vw;
+	}
+
+	.container {
+		position: relative;
+		width: 90%;
+		height: 90%;
+		margin: auto;
+		padding: 10% 0;
+	}
+}

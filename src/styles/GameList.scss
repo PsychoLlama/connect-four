@@ -1,0 +1,29 @@
+@import 'global';
+@import 'container';
+
+.gamelist {
+
+	ul {
+		margin: 5% 0;
+		padding: 0;
+	}
+
+	li {
+		list-style-type: none;
+		position: relative;
+		margin: 1em 0;
+		// border-bottom: 0.1em solid #f0f0f0;
+	}
+
+	.game .link {
+		padding: 0.25em 0;
+		height: 100%;
+		display: block;
+		letter-spacing: 0.05em;
+		box-sizing: border-box;
+
+		&:hover {
+			text-decoration: underline;
+		}
+	}
+}

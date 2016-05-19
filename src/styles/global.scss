@@ -1,20 +1,28 @@
-$bg: #f8f8f8;
+$phone: 768px;
+$primary: #FFD27F;
 
 body {
 	margin: 0;
 	font-family: raleway, "helvetica neue", helvetica, arial, sans-serif;
-	color: #505458;
+	color: #303438;
 	background-color: #f8f8f8;
+}
+
+h1, h2, h3 {
+	margin: 0;
 }
 
 a {
 	color: inherit;
 	text-decoration: none;
-	padding-bottom: 0.25em;
 }
 
-a:hover {
-	border-bottom-width: 0.08em;
-	border-bottom-color: inherit;
-	border-bottom-style: dotted;
+.borderized {
+	transition: background-color 0.25s;
+	border: 0.08em solid $primary;
+	border-radius: 0.2em;
+
+	&:hover {
+		background-color: lighten($primary, 22%);
+	}
 }

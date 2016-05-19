@@ -4,6 +4,8 @@ import React from 'react';
 import Game from './Game.jsx';
 import gun from './gun.jsx';
 
+require('./styles/GameList.scss');
+
 const games = gun.get('games');
 
 export default class GameList extends React.Component {
@@ -15,9 +17,11 @@ export default class GameList extends React.Component {
 	}
 
 	render() {
-		return <div>
-			<h1>Active Games</h1>
-			<ul>{this.state.gameList}</ul>
+		return <div className='responsive-size gamelist'>
+			<div className='container'>
+				<h1>Active Games</h1>
+				<ul>{this.state.gameList}</ul>
+			</div>
 		</div>;
 	}
 

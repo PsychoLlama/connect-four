@@ -8,7 +8,7 @@ export default class Main extends React.Component {
 	}
 
 	render() {
-		return <div className='homepage'>
+		return <div className='responsive-size homepage'>
 			<div className='container'>
 				<h1>C<sup>4</sup></h1>
 				<p className='light'>

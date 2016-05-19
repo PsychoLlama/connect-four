@@ -1,23 +1,23 @@
 @import 'global';
+@import 'container';
 
 .homepage {
 	$phone: 768px;
 	$text-color: #303438;
 
-	position: relative;
-
-	color: $text-color;
-	width: 50vw;
 	min-height: 50vh;
-	margin: 5vh auto;
-	text-align: center;
-	background-color: white;
-	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.08);
-
 	@media (max-width: $phone) {
-		width: 90vw;
 		min-height: 95vh;
-		margin: 2.5vh 5vw;
+	}
+
+	p a {
+		padding-bottom: 0.25em;
+
+		&:hover {
+			border-bottom-width: 0.08em;
+			border-bottom-color: inherit;
+			border-bottom-style: dotted;
+		}
 	}
 
 	section {
@@ -25,14 +25,6 @@
 		@media (max-width: $phone) {
 			margin-top: 30%;
 		}
-	}
-
-	.container {
-		position: relative;
-		width: 90%;
-		height: 90%;
-		margin: auto;
-		padding: 10% 0;
 	}
 
 	.light {
@@ -45,12 +37,8 @@
 	}
 
 	.btn {
-		$color: #FFD27F;
-
-		transition: background-color 0.25s;
+		@extend .borderized;
 		display: inline-block;
-		border: 0.08em solid $color;
-		border-radius: 0.2em;
 		padding: 1em 0;
 		margin: 0.5em 0;
 		box-sizing: border-box;
@@ -62,10 +50,6 @@
 		@media (max-width: $phone) {
 			width: 100%;
 			margin: 0.5em 0;
-		}
-
-		&:hover {
-			background-color: lighten($color, 22%);
 		}
 	}
 }
