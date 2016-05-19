@@ -85,14 +85,15 @@ export default class Table extends React.Component {
 		if (!player || player === 'playerspectator') {
 			return;
 		}
+		let quit = false;
 		turns.not(function () {
 			if (player !== 'player1') {
 				// player1 starts first
-				return;
+				return (quit = true);
 			}
 			turns.put({ col, player });
 		}).val(function (turn) {
-			if (turn.player === player) {
+			if (turn.player === player || quit) {
 				// wait your turn
 				return;
 			}

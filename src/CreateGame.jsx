@@ -6,7 +6,7 @@ import recommend from 'random-words';
 const games = gun.get('games');
 
 games.not(function () {
-	this.put({
+	games.put({
 		'GAME_LIST_INITIATOR': null
 	});
 });
@@ -57,9 +57,31 @@ export default class CreateGame extends React.Component {
 		</div>;
 	}
 
+	validate(key) {
+		const valid = {
+			[key]: false
+		};
+		const err = {
+			[key]: 'Checking availability...'
+		};
+
+		games.path(key).not(() => {
+			valid[key] = true;
+			err[key] = null;
+			this.setState({ valid, err });
+		}).val(game => {
+			valid[key] = !(game instanceof Object);
+			if (valid[key]) {
+				err[key] = null;
+			} else {
+				err[key] = `Game "${key}" already exists.`;
+			}
+			this.setState({ valid, err });
+		});
+	}
+
 	input(e) {
 		const key = e.target.value;
-		const newGame = this;
 		const valid = {
 			[key]: false
 		};
@@ -69,22 +91,11 @@ export default class CreateGame extends React.Component {
 		if (key.length === 0) {
 			valid[key] = false;
 			err[key] = 'Game name is empty.';
-		} else {
-			games.path(key).not(() => {
-				valid[key] = true;
-				err[key] = null;
-				newGame.setState({ valid, err });
-			}).val(game => {
-				valid[key] = !(game instanceof Object);
-				if (valid[key]) {
-					err[key] = null;
-				} else {
-					err[key] = `Game "${key}" already exists.`;
-				}
-				newGame.setState({ valid, err });
-			});
 		}
 		this.setState({ valid, err, key });
+		if (key.length) {
+			this.validate(key);
+		}
 	}
 
 	submit() {

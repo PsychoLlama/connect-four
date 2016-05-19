@@ -29,7 +29,7 @@ export default class GameList extends React.Component {
 			};
 		});
 		games.map().val((game, field) => {
-			if (this.state.unmounted || game === null) {
+			if (this.unmounted || game === null) {
 				return;
 			}
 			const age = Gun.is.node.state(game, 'key');
@@ -47,10 +47,6 @@ export default class GameList extends React.Component {
 	}
 
 	componentWillUnmount() {
-		this.setState(function () {
-			return {
-				unmounted: true
-			};
-		});
+		this.unmounted = true;
 	}
 }

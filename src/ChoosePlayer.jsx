@@ -38,7 +38,8 @@ export default class ChoosePlayer extends React.Component {
 		</form>;
 	}
 	componentDidMount() {
-		const game = gun.game(this.props.gameID).init();
+		const ID = this.props.gameID;
+		const game = gun.game(ID).init();
 		const players = game.path('players');
 		players.not(() => {
 			players.put({

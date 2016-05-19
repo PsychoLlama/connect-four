@@ -12,15 +12,7 @@ import Table from './Table.jsx';
 import Main from './Main.jsx';
 import GameList from './GameList.jsx';
 import CreateGame from './CreateGame.jsx';
-
-class NotFound extends React.Component {
-	constructor() {
-		super();
-	}
-	render() {
-		return <h1>Page not found :(</h1>;
-	}
-}
+import NotFound from './NotFound.jsx';
 
 const app = document.getElementById('app');
 
