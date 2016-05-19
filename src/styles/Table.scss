@@ -11,9 +11,10 @@
 	height: 100%;
 	width: calc(100% / 7);
 	display: inline-block;
-}
-.col:hover .hole {
-	box-shadow: 0 0 0 50px #1583EF;
+
+	&:hover .hole {
+		box-shadow: 0 0 0 50px #1583EF;
+	}
 }
 .cell {
 	position: relative;
@@ -29,6 +30,7 @@
 	margin: 10%;
 	border-radius: 50%;
 }
+
 .player1 {
 	background-color: red;
 }

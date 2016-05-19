@@ -1,39 +1,71 @@
-body {
-	margin: 0;
-	background-color: #93DCFF;
-	background-image: linear-gradient(125deg, #93DCFF, #c1e0f2, #93DCFF);
-	background-repeat: no-repeat;
-	min-height: 100vh;
-	font-family: raleway, helvetica, arial, sans-serif;
-	color: #303438;
-}
+@import 'global';
 
-.btn {
-	border: 1px solid white;
-	border: 1px solid rgba(255, 255, 255, 0.6);
-	display: inline-block;
-	padding: 0.5em 1.5em;
-}
+.homepage {
+	$phone: 768px;
+	$text-color: #303438;
 
-a {
-	color: inherit;
-	text-decoration: none;
-}
-a:hover {
-	border-bottom: 1px solid inherit;
-}
-.player1 {
-	background-color: red;
-}
-.player2 {
-	background-color: blue;
-}
-input.valid-false {
-	border: 1px solid red;
-}
-.game-link {
-	display: block;
-}
-.status .recommend {
-	font-weight: bold;
+	position: relative;
+
+	color: $text-color;
+	width: 50vw;
+	min-height: 50vh;
+	margin: 5vh auto;
+	text-align: center;
+	background-color: white;
+	box-shadow: 0 3px 5px -1px rgba(0, 0, 0, 0.08);
+
+	@media (max-width: $phone) {
+		width: 90vw;
+		min-height: 95vh;
+		margin: 2.5vh 5vw;
+	}
+
+	section {
+		margin-top: 15%;
+		@media (max-width: $phone) {
+			margin-top: 30%;
+		}
+	}
+
+	.container {
+		position: relative;
+		width: 90%;
+		height: 90%;
+		margin: auto;
+		padding: 10% 0;
+	}
+
+	.light {
+		font-size: 85%;
+		color: lighten($text-color, 35%);
+	}
+
+	h1, h2, h3 {
+		margin: 0;
+	}
+
+	.btn {
+		$color: #FFD27F;
+
+		transition: background-color 0.25s;
+		display: inline-block;
+		border: 0.08em solid $color;
+		border-radius: 0.2em;
+		padding: 1em 0;
+		margin: 0.5em 0;
+		box-sizing: border-box;
+
+		/* larger screens */
+		width: 45%;
+		margin: 0.5em 2.5%;
+
+		@media (max-width: $phone) {
+			width: 100%;
+			margin: 0.5em 0;
+		}
+
+		&:hover {
+			background-color: lighten($color, 22%);
+		}
+	}
 }
