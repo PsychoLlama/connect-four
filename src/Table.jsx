@@ -1,5 +1,6 @@
 /*eslint "no-unused-vars": "off"*/
 import React from 'react';
+import { Link } from 'react-router';
 import Game from 'connect-four';
 import gun from './gun.jsx';
 import ChoosePlayer from './ChoosePlayer.jsx';
@@ -7,6 +8,36 @@ import GameStatus from './GameStatus.jsx';
 require('./styles/Table.scss');
 
 const armada = {};
+
+function generateTable(react) {
+	let cols = [];
+
+	// Populate a table like structure
+	for (let col = 0; col < react.game.cols; col += 1) {
+		let cells = [];
+		for (let row = react.game.rows - 1; row >= 0; row -= 1) {
+			let id = react.game.format(col, row);
+			let color = react.state[id] || '';
+			let cell = <div
+				key={id}
+				className='cell'
+				data-coord={id}
+				onClick={react.click.bind(react)}>
+				<div
+					className={`${color} hole`}
+					id={id}
+					data-coord={id}></div>
+			</div>;
+			cells.push(cell);
+		}
+		let column = <div className='col' key={col}>{cells}</div>;
+		cols.push(column);
+	}
+
+	return <div className='table'>
+		{cols}
+	</div>;
+}
 
 export default class Table extends React.Component {
 	constructor() {
@@ -34,34 +65,14 @@ export default class Table extends React.Component {
 			let gameID = this.props.params.gameID;
 			return <ChoosePlayer gameID={gameID} parent={this} />;
 		}
-		let cols = [];
+		const table = generateTable(this);
 
-		// Populate a table like structure
-		for (let col = 0; col < this.game.cols; col += 1) {
-			let cells = [];
-			for (let row = this.game.rows - 1; row >= 0; row -= 1) {
-				let id = this.game.format(col, row);
-				let color = this.state[id] || '';
-				let cell = <div
-					key={id}
-					className='cell'
-					data-coord={id}
-					onClick={this.click.bind(this)}>
-					<div
-						className={`${color} hole`}
-						id={id}
-						data-coord={id}></div>
-				</div>;
-				cells.push(cell);
-			}
-			let column = <div className='col' key={col}>{cells}</div>;
-			cols.push(column);
-		}
-
-		return <div>
-			<GameStatus player={this.state.player} game={this.game} />
-			<div className='table'>
-				{cols}
+		return <div className='connect-four'>
+			<header>
+				<GameStatus player={this.state.player} game={this.game} />
+			</header>
+			<div className='container'>
+				{table}
 			</div>
 		</div>;
 	}

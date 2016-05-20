@@ -1,32 +1,81 @@
-.table {
-	margin: auto;
-	width: 50vw;
-	height: calc(50vw / 7 * 6);
-	position: relative;
-	z-index: 1;
-	line-height: 0;
-}
-.col {
-	position: relative;
-	height: 100%;
-	width: calc(100% / 7);
-	display: inline-block;
+@import 'global';
 
-	&:hover .hole {
-		box-shadow: 0 0 0 50px #1583EF;
+.connect-four {
+	header {
+		height: 20vh;
+		box-sizing: border-box;
+	}
+
+	h1, h2, h3 {
+		padding: 10vh 0;
+		text-align: center;
+	}
+
+	.container {
+		height: 80vh;
+		position: relative;
 	}
 }
-.cell {
+
+.table {
+	$bg: #e8e8e8;
+
+	margin: auto;
 	position: relative;
-	width: 100%;
-	height: calc(100% / 6);
-	display: inline-block;
-	overflow: hidden;
-}
-.hole {
-	box-shadow: 0 0 0 50px #2593FF;
-	height: 80%;
-	width: 80%;
-	margin: 10%;
-	border-radius: 50%;
+	z-index: 1;
+
+	/*
+		This prevents an inline-block
+		bug that adds vertical
+		spaces between each cell.
+	*/
+	line-height: 0;
+
+	// elongated sides of the c4 board.
+	border-style: solid;
+	border-width: 0 1.5vw 0 1.5vw;
+	border-color: darken($bg, 1%);
+	border-radius: 0.25em 0.25em 0 0;
+
+	width: 50vw;
+	height: 50vw / 7 * 6;
+
+	@media (max-width: $phone) {
+		width: 90vw;
+		height: 90vw / 7 * 6;
+	}
+
+	.col {
+		position: relative;
+		height: 100%;
+		width: calc(100% / 7);
+		display: inline-block;
+
+		&:hover .hole {
+			box-shadow: 0 0 0 50px darken($bg, 3%);
+		}
+	}
+
+	.cell {
+		position: relative;
+		width: 100%;
+		height: calc(100% / 6);
+		display: inline-block;
+		overflow: hidden;
+	}
+
+	.hole {
+		box-shadow: 0 0 0 50px $bg;
+		height: 80%;
+		width: 80%;
+		margin: 10%;
+		border-radius: 50%;
+	}
+
+	.player1 {
+		background-color: $player1;
+	}
+	.player2 {
+		background-color: $player2;
+	}
 }
