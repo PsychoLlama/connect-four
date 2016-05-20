@@ -61,6 +61,10 @@
 				cursor: pointer;
 			}
 
+			&:active {
+				background-color: darken($bg, 3%);
+			}
+
 			@media (max-width: $phone) {
 				@include width(100%);
 				font-size: 75%;

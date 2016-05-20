@@ -25,4 +25,7 @@ a {
 	&:hover {
 		background-color: lighten($primary, 22%);
 	}
+	&:active {
+		background-color: lighten($primary, 18%);
+	}
 }
