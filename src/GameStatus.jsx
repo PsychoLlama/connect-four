@@ -5,14 +5,13 @@ function getOtherPlayer (player) {
 
 function getWinner(me, winner) {
 	const otherPlayer = getOtherPlayer(winner);
-	const spectator = me === 'spectator';
 	let message = '';
-	if (winner === me) {
+	if (me === winner) {
 		message = 'You win!';
-	} else if (winner && !spectator) {
-		message = `${otherPlayer} wins :(`;
+	} else if (me === otherPlayer) {
+		message = `${winner} wins :(`;
 	} else if (winner) {
-		message = `${otherPlayer} wins!`;
+		message = `${winner} wins!`;
 	} else {
 		message = 'Game tied :(';
 	}
