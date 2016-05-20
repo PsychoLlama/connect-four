@@ -1,0 +1,73 @@
+@import 'global';
+
+.choose-player {
+
+	h2 {
+		@include border(bottom);
+		font-size: 150%;
+		padding: 1em 0;
+	}
+
+	input {
+		display: none;
+	}
+
+	.player1, .player2, .spectator {
+		padding: 2em 0;
+		display: inline-block;
+		box-sizing: border-box;
+		cursor: pointer;
+		font-size: 130%;
+		font-weight: bold;
+	}
+
+	@mixin player-background($color) {
+		background-color: $color;
+
+		&:hover {
+			background-color: darken($color, 3%);
+		}
+		&:active {
+			background-color: darken($color, 5%);
+		}
+	}
+
+	.player1, .player2 {
+		@include border(bottom);
+		width: 50%;
+		color: white;
+		box-shadow: inset 0 52px 5px -50px rgba(0, 0, 0, 0.3);
+	}
+
+	.player1 {
+		@include player-background($player1);
+	}
+
+	.player2 {
+		@include player-background($player2);
+	}
+
+	.disabled {
+		$bg: #ccc;
+
+		@include disabled($bg);
+
+		&:hover {
+			background-color: darken($bg, 3%);
+		}
+		&:active {
+			background-color: darken($bg, 5%);
+		}
+	}
+
+	.spectator {
+		@include player-background(white);
+
+		width: 100%;
+		color: #404448;
+
+		@media (max-width: $phone) {
+			@include border(bottom);
+		}
+	}
+}

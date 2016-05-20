@@ -1,5 +1,6 @@
 import React from 'react';
 import gun from './gun.jsx';
+require('./styles/ChoosePlayer.scss');
 
 export default class ChoosePlayer extends React.Component {
 	constructor() {
@@ -8,34 +9,42 @@ export default class ChoosePlayer extends React.Component {
 	}
 	render() {
 		const input = this.input.bind(this);
-		return <form onSubmit={this.submit}>
-			<label>
-				Red
-				<input
-					disabled={this.state.player1 !== null}
-					type='radio'
-					value='player1'
-					name='player'
-					onChange={input} />
-			</label>
-			<label>
-				Blue
-				<input
-					disabled={this.state.player2 !== null}
-					type='radio'
-					value='player2'
-					name='player'
-					onChange={input} />
-			</label>
-			<label>
-				Spectator
-				<input
-					type='radio'
-					value='spectator'
-					name='player'
-					onChange={input} />
-			</label>
-		</form>;
+		const state = this.state;
+		const player1Taken = state.player1 !== null;
+		const player2Taken = state.player2 !== null;
+		return <div className='responsive-size choose-player'>
+			<div classname='container'>
+				<h2>Choose your player</h2>
+				<form onSubmit={this.submit}>
+					<label className={`player1 ${player1Taken ? 'disabled': ''}`}>
+						Player 1
+						<input
+							disabled={player1Taken}
+							type='radio'
+							value='player1'
+							name='player'
+							onChange={input} />
+					</label>
+					<label className={`player2 ${player2Taken ? 'disabled' : ''}`}>
+						Player 2
+						<input
+							disabled={player2Taken}
+							type='radio'
+							value='player2'
+							name='player'
+							onChange={input} />
+					</label>
+					<label className='spectator'>
+						Spectator
+						<input
+							type='radio'
+							value='spectator'
+							name='player'
+							onChange={input} />
+					</label>
+				</form>
+			</div>
+		</div>;
 	}
 	componentDidMount() {
 		const ID = this.props.gameID;

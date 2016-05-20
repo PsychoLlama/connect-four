@@ -1,5 +1,17 @@
 $phone: 768px;
 $primary: #FFD27F;
+$player1: #EF476F;
+$player2: #118AB2;
+
+@mixin border($side) {
+	border-#{$side or top}: 0.1em solid #f8f8f8;
+}
+
+@mixin disabled($color:#ccc) {
+	background-color: $color;
+	cursor: not-allowed;
+	text-decoration: line-through;
+}
 
 body {
 	margin: 0;
