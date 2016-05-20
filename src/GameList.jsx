@@ -3,6 +3,7 @@
 import React from 'react';
 import Game from './Game.jsx';
 import gun from './gun.jsx';
+import { Link } from 'react-router';
 
 require('./styles/GameList.scss');
 
@@ -17,10 +18,21 @@ export default class GameList extends React.Component {
 	}
 
 	render() {
+		const list = this.state.gameList;
+		let games;
+		if (!list.length) {
+			games = <p className='no-games'>
+				No games here. <Link to='/new-game'>Start one?</Link>
+			</p>;
+		} else {
+			games = <ul>
+				{list}
+			</ul>;
+		}
 		return <div className='responsive-size gamelist'>
 			<div className='container'>
 				<h1>Active Games</h1>
-				<ul>{this.state.gameList}</ul>
+				{games}
 			</div>
 		</div>;
 	}

@@ -2,6 +2,7 @@
 @import 'container';
 
 .gamelist {
+	$text-color: #303438;
 
 	ul {
 		margin: 5% 0;
@@ -12,7 +13,21 @@
 		list-style-type: none;
 		position: relative;
 		margin: 1em 0;
-		// border-bottom: 0.1em solid #f0f0f0;
+	}
+
+	.no-games {
+		$muted-text-color: lighten($text-color, 35%);
+		font-size: 85%;
+		color: $muted-text-color;
+
+		a {
+			font-weight: bold;
+			padding-bottom: 0.25em;
+
+			&:hover {
+				border-bottom: 0.08em dotted $muted-text-color;
+			}
+		}
 	}
 
 	.game .link {
