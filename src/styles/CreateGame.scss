@@ -1,0 +1,79 @@
+@import 'global';
+
+.create-game {
+	$border-color: #f0f0f0;
+
+	@mixin border($side) {
+		border-#{$side or top}: 0.1em solid #f8f8f8;
+	}
+
+	& > * {
+		@include border(top);
+		padding: 1em 0;
+	}
+
+	form {
+		@mixin width($size) {
+			width: $size - 5%;
+			margin: 0 2.5%;
+			box-sizing: border-box;
+		}
+		padding: 2em 0;
+		input {
+			$invalid: #ef476f;
+			$valid: #06d6a0;
+
+			@include width(70%);
+			text-align: center;
+			border: none;
+			border-bottom: 0.2em solid $border-color;
+			font-size: 125%;
+			padding: 0.5em;
+
+			&.valid-false {
+				border-bottom-color: $invalid;
+			}
+			&.valid-true {
+				border-bottom-color: $valid;
+			}
+
+			@media (max-width: $phone) {
+				@include width(100%);
+				margin-bottom: 1.5em;
+			}
+		}
+
+		button[disabled] {
+			text-decoration: line-through;
+			color: $border-color;
+		}
+
+		button {
+			@include width(30%);
+			$bg: white;
+			border: 0.1em solid $border-color;
+			font-size: 100%;
+			background-color: $bg;
+			padding: 1em;
+
+			&:hover {
+				background-color: darken($bg, 2%);
+				cursor: pointer;
+			}
+
+			@media (max-width: $phone) {
+				@include width(100%);
+				font-size: 75%;
+				font-weight: bold;
+			}
+		}
+	}
+
+	p {
+		margin: 0;
+
+		.recommend {
+			font-style: italic;
+		}
+	}
+}

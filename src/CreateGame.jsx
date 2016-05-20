@@ -2,12 +2,13 @@ import React from 'react';
 import gun from './gun.jsx';
 import { hashHistory } from 'react-router';
 import recommend from 'random-words';
+require('./styles/CreateGame.scss');
 
 const games = gun.get('games');
 
 games.not(function () {
 	games.put({
-		'GAME_LIST_INITIATOR': null
+		GAME_LIST_INITIATOR: null
 	});
 });
 
@@ -42,12 +43,14 @@ export default class CreateGame extends React.Component {
 			</span>;
 		}
 
-		return <div>
-			<h1>Create a Game</h1>
+		return <div className='responsive-size create-game'>
+			<h1>Start a game</h1>
 			<form onSubmit={this.submit.bind(this)}>
 				<input
+					autoFocus='true'
 					type='text'
 					onInput={this.input.bind(this)}
+					placeholder='Enter game name...'
 					className={`valid-${valid}`} />
 				<button type='submit' disabled={!valid}>
 					Start Playing
@@ -100,7 +103,8 @@ export default class CreateGame extends React.Component {
 
 	submit() {
 		const key = this.state.key;
-		if (this.state.valid[key]) {
+		const valid = this.state.valid;
+		if (valid[key]) {
 			games.path(key).put({ key });
 			hashHistory.push(`/games/${key}/`);
 		}
