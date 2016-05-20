@@ -98,18 +98,23 @@ export default class Table extends React.Component {
 			return;
 		}
 		let quit = false;
-		turns.not(function () {
+		function startGame() {
+			// player1 goes first
 			if (player !== 'player1') {
-				// player1 starts first
 				quit = true;
 				return;
 			}
 			turns.put({ col, player });
-		}).val(function (turn) {
+		}
+		turns.not(startGame).val(function (turn) {
+			if (turn === null) {
+				return startGame();
+			}
 			if (turn.player === player || quit) {
 				// wait your turn
 				return;
 			}
+
 			const next = this.path('next');
 			next.not(() => {
 				next.put({ col, player });

@@ -53,8 +53,7 @@ export default class GameList extends React.Component {
 			const hourAgo = now - 1000 * 60 * 60;
 			if (age < hourAgo) {
 				// reset the game
-				games.path(field).put(null);
-				return gun.game(game.key).reset();
+				return Gun.gameReset(game.key);
 			}
 			list.setState(state => {
 				const games = state.gameList;
