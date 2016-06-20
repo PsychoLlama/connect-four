@@ -7,6 +7,8 @@ var fs = require('fs');
 var path = require('path');
 var port = process.env.PORT || process.argv[2] || 80;
 
+Gun.log.squelch = true;
+
 var gun = new Gun();
 
 var server = new http.Server(gun.wsp.server);

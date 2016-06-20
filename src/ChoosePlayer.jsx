@@ -19,7 +19,6 @@ export default class ChoosePlayer extends React.Component {
 					<label className={`player1 ${player1Taken ? 'disabled': ''}`}>
 						Player 1
 						<input
-							disabled={player1Taken}
 							type='radio'
 							value='player1'
 							name='player'
@@ -28,7 +27,6 @@ export default class ChoosePlayer extends React.Component {
 					<label className={`player2 ${player2Taken ? 'disabled' : ''}`}>
 						Player 2
 						<input
-							disabled={player2Taken}
 							type='radio'
 							value='player2'
 							name='player'
