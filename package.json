@@ -4,7 +4,7 @@
   "description": "Connect four by gunDB",
   "main": "server.js",
   "scripts": {
-    "test": "mocha",
+    "test": "eslint src/ --fix",
     "start": "node server.js",
     "postinstall": "webpack --config prod.webpack.config.js",
     "build": "webpack --watch"
