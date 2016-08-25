@@ -4,10 +4,11 @@
   "description": "Connect four by gunDB",
   "main": "server.js",
   "scripts": {
-    "test": "eslint src/ --fix",
+    "lint": "eslint src/",
     "start": "node server.js",
-    "postinstall": "webpack --config prod.webpack.config.js",
-    "build": "webpack --watch"
+    "postinstall": "webpack --config webpack.prod.js",
+    "build": "webpack",
+    "dev": "npm run build -- --watch"
   },
   "repository": {
     "type": "git",
@@ -15,6 +16,7 @@
   },
   "keywords": [
     "connect-four",
+    "game",
     "gun",
     "gunDB",
     "game",
