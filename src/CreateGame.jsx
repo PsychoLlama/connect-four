@@ -2,7 +2,7 @@ import React from 'react';
 import gun from './gun.jsx';
 import { hashHistory } from 'react-router';
 import recommend from 'random-words';
-require('./styles/CreateGame.scss');
+import './styles/CreateGame.scss';
 
 const games = gun.get('games');
 
@@ -13,7 +13,7 @@ games.not(function () {
 });
 
 export default class CreateGame extends React.Component {
-	constructor() {
+	constructor () {
 		super();
 		this.state = {
 			valid: {},
@@ -25,7 +25,7 @@ export default class CreateGame extends React.Component {
 		};
 	}
 
-	render() {
+	render () {
 		const state = this.state;
 		const valid = Boolean(state.valid[state.key]);
 		const err = state.err[state.key];
@@ -60,7 +60,7 @@ export default class CreateGame extends React.Component {
 		</div>;
 	}
 
-	validate(key) {
+	validate (key) {
 		const valid = {
 			[key]: false
 		};
@@ -83,7 +83,7 @@ export default class CreateGame extends React.Component {
 		});
 	}
 
-	input(e) {
+	input (e) {
 		const key = e.target.value;
 		const valid = {
 			[key]: false
@@ -101,7 +101,7 @@ export default class CreateGame extends React.Component {
 		}
 	}
 
-	submit() {
+	submit () {
 		const key = this.state.key;
 		const valid = this.state.valid;
 		if (valid[key]) {

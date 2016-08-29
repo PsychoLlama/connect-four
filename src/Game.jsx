@@ -1,13 +1,8 @@
-/*eslint "no-unused-vars": "off"*/
-import React from 'react';
+import React, { PropTypes } from 'react';
 import { Link } from 'react-router';
 
 export default class Game extends React.Component {
-	constructor() {
-		super();
-		this.state = {};
-	}
-	render() {
+	render () {
 		const key = this.props.game.key;
 		return <li className='game'>
 			<Link to={`/games/${key}`} className='link'>
@@ -16,3 +11,7 @@ export default class Game extends React.Component {
 		</li>;
 	}
 }
+
+Game.propTypes = {
+	game: PropTypes.object.isRequired,
+};

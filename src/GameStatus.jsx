@@ -1,9 +1,10 @@
-import React from 'react';
-function getOtherPlayer (player) {
-	return (player === 'player1') ? 'player2' : 'player1';
-}
+import React, { Component, PropTypes } from 'react';
 
-function getWinner(me, winner) {
+const getOtherPlayer = (player) => (
+	player === 'player1' ? 'player2' : 'player1'
+);
+
+function getWinner (me, winner) {
 	const otherPlayer = getOtherPlayer(winner);
 	let message = '';
 	if (me === winner) {
@@ -18,15 +19,18 @@ function getWinner(me, winner) {
 	return message;
 }
 
-export default class GameStatus extends React.Component {
-	constructor() {
+export default class GameStatus extends Component {
+	constructor () {
 		super();
-		this.state = {};
+
+		this.state = { message: '' };
 	}
-	render() {
+
+	render () {
 		return <h2>{this.state.message}</h2>;
 	}
-	componentDidMount() {
+
+	componentDidMount () {
 		const me = this.props.player;
 		const game = this.props.game;
 		let message = '';
@@ -70,3 +74,8 @@ export default class GameStatus extends React.Component {
 		});
 	}
 }
+
+GameStatus.propTypes = {
+	game: PropTypes.object.isRequired,
+	player: PropTypes.string.isRequired,
+};

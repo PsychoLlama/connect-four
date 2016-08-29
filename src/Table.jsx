@@ -1,15 +1,14 @@
-/*eslint "no-unused-vars": "off"*/
-import React from 'react';
-import { Link } from 'react-router';
+/* eslint-disable react/no-direct-mutation-state*/
+import React, { Component, PropTypes } from 'react';
 import Game from 'connect-four';
 import gun from './gun.jsx';
 import ChoosePlayer from './ChoosePlayer.jsx';
 import GameStatus from './GameStatus.jsx';
-require('./styles/Table.scss');
+import './styles/Table.scss';
 
 const armada = {};
 
-function generateTable(react) {
+function generateTable (react) {
 	let cols = [];
 
 	// Populate a table like structure
@@ -39,27 +38,15 @@ function generateTable(react) {
 	</div>;
 }
 
-export default class Table extends React.Component {
-	constructor() {
+export default class Table extends Component {
+	constructor () {
 		super();
 		const game = new Game();
-		const table = this;
 		this.game = game;
 		this.state = {};
-		game.on('play', (player, coord) => {
-			if (table.state.unmounted) {
-				return;
-			}
-			const key = game.format(coord.col, coord.row);
-			table.setState(() => {
-				return {
-					[key]: player
-				};
-			});
-		});
 	}
 
-	render() {
+	render () {
 		const player = this.state.player;
 		if (!player) {
 			let gameID = this.props.params.gameID;
@@ -77,7 +64,7 @@ export default class Table extends React.Component {
 		</div>;
 	}
 
-	click(e) {
+	click (e) {
 		const coord = e.target.getAttribute('data-coord');
 		if (coord === null) {
 			return;
@@ -92,13 +79,13 @@ export default class Table extends React.Component {
 		this.play(turns, col);
 	}
 
-	play(turns, col) {
+	play (turns, col) {
 		const player = this.state.player;
 		if (!player || player === 'spectator') {
 			return;
 		}
 		let quit = false;
-		function startGame() {
+		function startGame () {
 			// player1 goes first
 			if (player !== 'player1') {
 				quit = true;
@@ -122,7 +109,23 @@ export default class Table extends React.Component {
 		});
 	}
 
-	componentDidMount() {
+	componentWillMount () {
+
+		const { game } = this;
+
+		game.on('play', (player, coord) => {
+			if (this.unmounted) {
+				return;
+			}
+
+			const key = game.format(coord.col, coord.row);
+
+			this.setState(() => ({ [key]: player }));
+		});
+
+	}
+
+	componentDidMount () {
 		const key = this.props.params.gameID;
 		const game = this.game;
 		let turns = armada[key];
@@ -138,7 +141,7 @@ export default class Table extends React.Component {
 		});
 	}
 
-	componentWillUnmount() {
+	componentWillUnmount () {
 		const player = this.state.player;
 		if (player) {
 			const gameID = this.props.params.gameID;
@@ -152,6 +155,10 @@ export default class Table extends React.Component {
 			and React will throw errors.
 			I'm not proud of it.
 		*/
-		this.state.unmounted = true;
+		this.unmounted = true;
 	}
 }
+
+Table.propTypes = {
+	params: PropTypes.object.isRequired,
+};

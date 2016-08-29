@@ -1,4 +1,3 @@
-/*eslint "no-unused-vars": "off"*/
 /*global Gun*/
 import React from 'react';
 import Game from './Game.jsx';
@@ -10,14 +9,15 @@ require('./styles/GameList.scss');
 const games = gun.get('games');
 
 export default class GameList extends React.Component {
-	constructor() {
+	constructor () {
 		super();
+
 		this.state = {
-			gameList: []
+			gameList: [],
 		};
 	}
 
-	render() {
+	render () {
 		const list = this.state.gameList;
 		let games;
 		if (!list.length) {
@@ -37,14 +37,10 @@ export default class GameList extends React.Component {
 		</div>;
 	}
 
-	componentDidMount() {
+	componentDidMount () {
 		const list = this;
-		this.setState(() => {
-			return {
-				unmounted: false
-			};
-		});
-		games.map().val((game, field) => {
+
+		games.map().val((game) => {
 			if (this.unmounted || game === null) {
 				return;
 			}
@@ -64,7 +60,7 @@ export default class GameList extends React.Component {
 		});
 	}
 
-	componentWillUnmount() {
+	componentWillUnmount () {
 		this.unmounted = true;
 	}
 }

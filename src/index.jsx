@@ -1,7 +1,4 @@
-/*eslint "no-unused-vars": "off"*/
-// eslint doesn't understand JSX very well.
-
-require('./styles/index.scss');
+import './styles/index.scss';
 
 import {
 	Router,
@@ -9,7 +6,7 @@ import {
 	hashHistory
 } from 'react-router';
 import React from 'react';
-import DOM from 'react-dom';
+import { render } from 'react-dom';
 import Table from './Table.jsx';
 import Main from './Main.jsx';
 import GameList from './GameList.jsx';
@@ -26,4 +23,4 @@ const router = <Router history={hashHistory}>
 	<Route path='*' component={NotFound} />
 </Router>;
 
-DOM.render(router, app);
+render(router, app);

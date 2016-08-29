@@ -8,6 +8,7 @@
     "start": "node server.js",
     "postinstall": "webpack --config webpack.prod.js",
     "build": "webpack",
+    "build:prod": "webpack --config webpack.prod.js",
     "dev": "npm run build -- --watch"
   },
   "repository": {

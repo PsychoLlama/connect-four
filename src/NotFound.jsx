@@ -1,9 +1,8 @@
-/*eslint "no-unused-vars": "off"*/
 import React from 'react';
 import { Link } from 'react-router';
 
-class NotFound extends React.Component {
-	render() {
+export default class NotFound extends React.Component {
+	render () {
 		const hash = location.hash;
 		const page = hash.slice(1, hash.indexOf('?'));
 		return <div>
@@ -12,5 +11,3 @@ class NotFound extends React.Component {
 		</div>;
 	}
 }
-
-export default NotFound;

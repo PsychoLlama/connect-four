@@ -6,8 +6,6 @@
 	tag for now, and the bugs are being
 	tracked down.
 */
-'use strict';
-
 const API = Gun.prototype;
 
 API.recurse = function (cb, gun) {
@@ -27,7 +25,7 @@ API.recurse = function (cb, gun) {
 API.game = function (key) {
 	const game = this.get(`games: ${key}`);
 	const players = game.path('players');
-	function initPlayers() {
+	function initPlayers () {
 		players.put({
 			player1: null,
 			player2: null
