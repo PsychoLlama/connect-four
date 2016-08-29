@@ -1,0 +1,15 @@
+---
+language: node_js
+node_js:
+  - 6
+
+script: "npm run lint"
+after_script: "npm run build:prod"
+
+deploy:
+  provider: heroku
+  api_key:
+    secure: KoN+Rh3qzfzJE2zSptCy4od2hr/kkKcZckAl+s/YlO0HMmQClJkn99ofqhmuHEILwIOQeTVF0BuOpx+HtZbjKIG19vxGL5WHwujwwyquWX++JIegGuvDie1xaGfv35SpQ+I6WSELh3K3MP8YGtCvR1tbo6fNQBF9T9kuWvK0u2KWPIIuNnqNQsuPvPhBfk8DL5NeEz1ndhWDkzteWiNRAILC0/Q/PyY3IZk7gLu8BSmUfn/WnfjH/kyB8Oskw5NGcXM2VOt57NIuLMgjHcYJK84upilcUJcEpxdV2lhQyN3u+rV+bxKNDK9w1TydbLcAjGqYT19uR7BnLGj7eGzIFdjhn3h5fO9bCuBvDfHY5FGe8oM1Ou8jEc/Svp+qHqKQTfbXOIN9v3+GBtRfi3uVTn/BkpKS1XGjVe3sSPoR6JNfriY26t1bEFHgMVvmIl1sOGA3qAZi4THqNMGkjaFezR6vhwarhf+JdK6TmOmNbh1jf1LCAYksgcJb6A/ONy8fV34i115FAvJuHrHjHruwzsPvNUp+lKc3MvKhHpROPrerq3cd+JgFX4HJBeQHEEOZC9fnE/V/5BMPamkQINaZvUXzAzm0u8F3Kl7JtmxrQRz+iDz1Zw0JfU5l8vpgz70Cei+Nk1Ci6hXo7Lp+f5/HzyyQjksGKvyiaSP9fTDTIKk=
+  app: gun-c4
+  on:
+    repo: PsychoLlama/connect-four
