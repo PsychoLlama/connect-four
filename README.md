@@ -3,6 +3,9 @@
 
 > This game is deployed on Heroku, and you can play it live [here](http://c4.gundb.io).
 
+[![Travis branch](https://img.shields.io/travis/PsychoLlama/connect-four/master.svg?style=flat-square)](https://travis-ci.org/PsychoLlama/connect-four)
+[![David](https://img.shields.io/david/PsychoLlama/connect-four.svg?style=flat-square)]()
+
 ## Issues
 Found a bug or have an idea? Submit it!
 
