@@ -1,5 +1,5 @@
 import React, { PropTypes, Component } from 'react';
-import gun from './gun.jsx';
+import gun from './gun';
 import './styles/ChoosePlayer.scss';
 
 export default class ChoosePlayer extends Component {

@@ -1,5 +1,5 @@
 import React from 'react';
-import gun from './gun.jsx';
+import gun from './gun';
 import { hashHistory } from 'react-router';
 import recommend from 'random-words';
 import './styles/CreateGame.scss';

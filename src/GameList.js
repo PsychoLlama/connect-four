@@ -1,7 +1,7 @@
 /*global Gun*/
 import React from 'react';
-import Game from './Game.jsx';
-import gun from './gun.jsx';
+import Game from './Game';
+import gun from './gun';
 import { Link } from 'react-router';
 
 require('./styles/GameList.scss');

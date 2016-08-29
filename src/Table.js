@@ -1,9 +1,9 @@
 /* eslint-disable react/no-direct-mutation-state*/
 import React, { Component, PropTypes } from 'react';
 import Game from 'connect-four';
-import gun from './gun.jsx';
-import ChoosePlayer from './ChoosePlayer.jsx';
-import GameStatus from './GameStatus.jsx';
+import gun from './gun';
+import ChoosePlayer from './ChoosePlayer';
+import GameStatus from './GameStatus';
 import './styles/Table.scss';
 
 const armada = {};

@@ -7,11 +7,11 @@ import {
 } from 'react-router';
 import React from 'react';
 import { render } from 'react-dom';
-import Table from './Table.jsx';
-import Main from './Main.jsx';
-import GameList from './GameList.jsx';
-import CreateGame from './CreateGame.jsx';
-import NotFound from './NotFound.jsx';
+import Table from './Table';
+import Main from './Main';
+import GameList from './GameList';
+import CreateGame from './CreateGame';
+import NotFound from './NotFound';
 
 const app = document.getElementById('app');
 

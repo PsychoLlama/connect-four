@@ -4,7 +4,7 @@ var path = require('path');
 
 module.exports = {
 	context: __dirname,
-	entry: path.join(__dirname, 'src', 'index.jsx'),
+	entry: path.join(__dirname, 'src', 'index.js'),
 	output: {
 		path: 'www',
 		filename: 'bundle.js'
@@ -12,7 +12,7 @@ module.exports = {
 	module: {
 		loaders: [
 			{
-				test: /\.jsx?$/,
+				test: /\.js$/,
 				exclude: /node_modules/,
 				loader: 'babel'
 			},
