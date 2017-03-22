@@ -47,7 +47,7 @@
     "eslint-plugin-react": "^6.2.0",
     "node-sass": "^4.0.0",
     "sass-loader": "^5.0.0",
-    "style-loader": "^0.15.0",
+    "style-loader": "^0.16.0",
     "webpack": "^2.2.1"
   }
 }
