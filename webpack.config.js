@@ -6,7 +6,7 @@ module.exports = {
 	context: __dirname,
 	entry: path.join(__dirname, 'src', 'index.js'),
 	output: {
-		path: 'www',
+		path: path.join(__dirname, 'www'),
 		filename: 'bundle.js'
 	},
 	module: {
@@ -14,11 +14,11 @@ module.exports = {
 			{
 				test: /\.js$/,
 				exclude: /node_modules/,
-				loader: 'babel'
+				loader: 'babel-loader'
 			},
 			{
 				test: /\.scss$/,
-				loaders: ['style', 'css', 'sass']
+				loaders: ['style-loader', 'css-loader', 'sass-loader']
 			}
 		]
 	}
